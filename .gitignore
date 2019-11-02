@@ -1,0 +1,10 @@
+/.env
+
+# wordpress
+/docroot/wordpress/*
+!/docroot/wordpress/wp-config.php
+
+# composer
+/vendor
+/composer.json
+/composer.lock
