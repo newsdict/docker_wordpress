@@ -41,7 +41,7 @@ define( 'DB_USER', getenv('DB_USER') );
 define( 'DB_PASSWORD', getenv('DB_PASSWORD') );
 
 /** MySQL hostname */
-define( 'DB_HOST', 'mysql' );
+define( 'DB_HOST', getenv('DB_HOST') );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
