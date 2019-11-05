@@ -21,12 +21,17 @@
 /**
  * require composer
  */
-#if(file_exists(dirname(__DIR__) . '../../vendor/autoload.php')) {
+if(file_exists('/usr/local/src/vendor/autoload.php')) {
   require_once '/usr/local/src/vendor/autoload.php';
   $dotenv = Dotenv\Dotenv::create('/');
   $dotenv->load();
-#}
- 
+}
+
+# If this site accessed ssl.
+if (strpos(getenv('WP_URL'), 'https://') !== false) {
+	$_SERVER['HTTPS'] = 'on';
+}
+
 define( 'WP_HOME', getenv('WP_URL')  );
 define( 'WP_SITEURL', getenv('WP_URL') . '/' . getenv('WP_SUFFIX') );
 
