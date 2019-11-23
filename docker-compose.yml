@@ -20,8 +20,10 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-    - ./docroot/wordpress/wp-config.php:/var/www/wordpress/wp-config.php:rw
-    - ./docroot/wordpress/wp-content/themes/newsdict:/var/www/wordpress/wp-content/themes/newsdict:rw
+    - ./docroot/wordpress/wp-config.php:/var/www/${WP_SUFFIX}/wp-config.php:rw
+    - ./docroot/wordpress/wp-content/themes:/var/www/${WP_SUFFIX}/wp-content/themes:rw
+    - ./docroot/wordpress/wp-content/plugins:/var/www/${WP_SUFFIX}/wp-content/plugins:rw
+    - ./docroot/wordpress/wp-content/uploads:/var/www/${WP_SUFFIX}/wp-content/uploads:rw
     - ./docroot/index.php:/var/www/index.php:rw
     - ./.env:/.env
     ports:

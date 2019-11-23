@@ -1,4 +1,6 @@
+# `.env` files
 /.env
+/.env-*
 
 # wordpress
 /docroot/wordpress/*
