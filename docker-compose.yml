@@ -19,6 +19,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command: bash -c "
+      sleep 20 &&
+      /docker_cmd.sh"
     volumes:
     - ./docroot/wordpress/wp-config.php:/var/www/${WP_SUFFIX}/wp-config.php:rw
     - ./docroot/wordpress/wp-content/themes:/var/www/${WP_SUFFIX}/wp-content/themes:rw
