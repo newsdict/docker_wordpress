@@ -11,7 +11,7 @@
  */
 if(file_exists('/usr/local/src/vendor/autoload.php')) {
   require_once '/usr/local/src/vendor/autoload.php';
-  $dotenv = Dotenv\Dotenv::create('/');
+  $dotenv = Dotenv\Dotenv::createImmutable('/');
   $dotenv->load();
 }
 

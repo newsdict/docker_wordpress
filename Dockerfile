@@ -9,7 +9,6 @@ WORKDIR /usr/local/src
 
 # For dotenv-php
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php -r "if (hash_file('sha384', 'composer-setup.php') === 'a5c698ffe4b8e849a443b120cd5ba38043260d5c4023dbf93e1558871f1f07f58274fc6f4c93bcfd858c6bd0775cd8d1') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN php composer.phar require vlucas/phpdotenv
@@ -25,9 +24,10 @@ ADD nginx/default /etc/nginx/sites-available/default
 ADD docker_cmd.sh /docker_cmd.sh
 RUN chmod +x /docker_cmd.sh
 RUN /bin/chown www-data.www-data -R /usr/local/src/wordpress
+RUN mkdir /var/cache/nginx
 
 # Rename dirname for security
-RUN . /.env && if [ ! -L /var/www/$WP_SUFFIX ]; then ln -s /usr/local/src/wordpress /var/www/$WP_SUFFIX; fi 
+RUN . /.env && if [ ! -L /var/www/$WP_SUFFIX ]; then ln -s /usr/local/src/wordpress /var/www/$WP_SUFFIX; fi
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
